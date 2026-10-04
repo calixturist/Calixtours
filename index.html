@@ -1,110 +1,260 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Calixturist | Descubre El Salvador</title>
+
 <style>
-:root{--bg:#080b09;--panel:#101511;--text:#f5f3eb;--muted:#b7c0b8;--accent:#d8ff69;--line:rgba(255,255,255,.14);--max:1200px}
-*{box-sizing:border-box} html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif}
-a{color:inherit;text-decoration:none} img{width:100%;height:100%;object-fit:cover;display:block}
-.wrap{width:min(var(--max),calc(100% - 34px));margin:auto}
-nav{position:fixed;z-index:20;left:0;right:0;top:0;background:linear-gradient(#080b09dd,transparent)}
-.nav{min-height:82px;display:flex;align-items:center;justify-content:space-between}
-.brand{font-weight:900;letter-spacing:.08em} .brand b{color:var(--accent)}
-.links{display:flex;gap:25px;font-size:.92rem}
-.hero{min-height:100svh;display:flex;align-items:end;position:relative;background:linear-gradient(180deg,#0002,#0001 35%,#080b09 97%),url('https://elsalvador.travel/system/wp-content/uploads/2018/09/Conchagua-2000x1200.jpg') center/cover}
-.hero-content{padding:160px 0 68px}
-.tag{font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:18px}
-h1{font-size:clamp(4rem,10vw,9rem);line-height:.86;letter-spacing:-.06em;margin:0;max-width:1000px}
-.lead{font-size:clamp(1rem,1.6vw,1.25rem);max-width:670px;color:#e0e5df;margin:28px 0}
-.button{display:inline-block;background:var(--accent);color:#0b0d0b;padding:15px 22px;border-radius:999px;font-weight:800}
-section{padding:105px 0}
-.head{display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:end;margin-bottom:42px}
-h2{font-size:clamp(2.6rem,5vw,5.2rem);line-height:.96;letter-spacing:-.045em;margin:0}
-.muted{color:var(--muted);line-height:1.7}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.card{min-height:510px;border-radius:28px;overflow:hidden;position:relative;border:1px solid var(--line)}
-.card:after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 45%,#050706e8)}
-.card-info{position:absolute;z-index:2;left:24px;right:24px;bottom:24px}
-.card h3{font-size:1.7rem;margin:0 0 7px} .card p{margin:0;color:#d5dcd5;line-height:1.5}
-.wide{display:grid;grid-template-columns:1.25fr .75fr;gap:18px}
-.photo{min-height:620px;border-radius:28px;overflow:hidden}
-.copy{background:var(--panel);border:1px solid var(--line);border-radius:28px;padding:38px;display:flex;flex-direction:column;justify-content:space-between}
-.copy h3{font-size:clamp(2.2rem,4vw,4.5rem);line-height:.98;letter-spacing:-.04em;margin:0}
-.smalltag{color:var(--accent);letter-spacing:.15em;text-transform:uppercase;font-size:.72rem}
-.gallery{display:grid;grid-template-columns:2fr 1fr 1fr;grid-auto-rows:260px;gap:16px}
-.g{overflow:hidden;border-radius:24px} .g:first-child{grid-row:span 2}
-footer{border-top:1px solid var(--line);padding:30px 0;color:#98a099}
-.note{font-size:.82rem;color:#879088;margin-top:25px}
-@media(max-width:850px){.links{display:none}.head,.wide{grid-template-columns:1fr}.grid{grid-template-columns:1fr}.card{min-height:430px}.gallery{grid-template-columns:1fr 1fr}.g:first-child{grid-column:span 2;grid-row:span 1}}
 
-/* Efecto interactivo Calixturist */
-.card img, .g img, .photo img {
-  transition: transform .45s ease, filter .45s ease;
-  will-change: transform;
+:root {
+    --bg: #FAFBFC;
+    --panel: #F2F8FB;
+    --text: #102A43;
+    --muted: #52697A;
+    --accent: #59BFE6;
+    --accent-light: #DDF3FB;
+    --white: #FFFFFF;
+    --max: 1200px;
 }
-.card:hover img, .g:hover img, .photo:hover img {
-  transform: scale(1.065);
-  filter: brightness(1.06);
+
+* {
+    box-sizing: border-box;
 }
-.card, .g, .photo {
-  cursor: pointer;
+
+html {
+    scroll-behavior: smooth;
 }
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: Inter, Arial, Helvetica, sans-serif;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.wrap {
+    width: min(var(--max), calc(100% - 34px));
+    margin: auto;
+}
+
+
+/* NAVEGACIÓN */
+
+nav {
+    position: fixed;
+    z-index: 20;
+    left: 0;
+    right: 0;
+    top: 0;
+    background: linear-gradient(
+        rgba(255,255,255,.96),
+        rgba(255,255,255,.78),
+        transparent
+    );
+}
+
+.nav {
+    min-height: 82px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.brand {
+    font-weight: 900;
+    letter-spacing: .08em;
+}
+
+.brand b {
+    color: var(--accent);
+}
+
+.links {
+    display: flex;
+    gap: 25px;
+    font-size: .92rem;
+    color: var(--text);
+    font-weight: 600;
+}
+
+
+/* PORTADA */
+
+.hero {
+    min-height: 100svh;
+    display: flex;
+    align-items: end;
+    position: relative;
+    color: white;
+
+    background:
+    linear-gradient(
+        180deg,
+        rgba(4,18,28,.12),
+        rgba(4,18,28,.20) 35%,
+        rgba(7,27,40,.82) 97%
+    ),
+    url('https://elsalvador.travel/system/wp-content/uploads/2018/09/Conchagua-2000x1200.jpg')
+    center/cover;
+}
+
+.hero-content {
+    padding: 160px 0 68px;
+}
+
+.tag {
+    font-size: .75rem;
+    letter-spacing: .20em;
+    text-transform: uppercase;
+    color: #8DDAF3;
+    margin-bottom: 18px;
+}
+
+h1 {
+    font-size: clamp(4rem,10vw,9rem);
+    line-height: .86;
+    letter-spacing: -.06em;
+    margin: 0;
+    max-width: 1000px;
+}
+
+.lead {
+    font-size: clamp(1rem,1.6vw,1.25rem);
+    max-width: 670px;
+    color: #F5F8FA;
+    margin: 28px 0;
+}
+
+.button {
+    display: inline-block;
+    background: var(--accent);
+    color: #102A43;
+    padding: 15px 22px;
+    border-radius: 999px;
+    font-weight: 800;
+    transition: transform .25s ease,
+                box-shadow .25s ease,
+                background .25s ease;
+}
+
+.button:hover {
+    transform: translateY(-2px);
+    background: #77CCE9;
+    box-shadow: 0 10px 28px rgba(42,150,190,.25);
+}
+
+
+/* SECCIONES */
+
+section {
+    padding: 105px 0;
+}
+
+.head {
+    display: grid;
+    grid-template-columns: 1.2fr .8fr;
+    gap: 40px;
+    align-items: end;
+    margin-bottom: 42px;
+}
+
+h2 {
+    font-size: clamp(2.6rem,5vw,5.2rem);
+    line-height: .96;
+    letter-spacing: -.045em;
+    margin: 0;
+}
+
+.muted {
+    color: var(--muted);
+    line-height: 1.7;
+}
+
+.smalltag {
+    color: #249BC7;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    font-size: .72rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+
+/* DESTINOS */
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 18px;
+}
+
 .card {
-  transition: transform .35s ease, border-color .35s ease, box-shadow .35s ease;
+    min-height: 510px;
+    border-radius: 28px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid rgba(16,42,67,.10);
+    box-shadow: 0 12px 34px rgba(16,42,67,.08);
+    cursor: pointer;
+
+    transition:
+        transform .35s ease,
+        border-color .35s ease,
+        box-shadow .35s ease;
 }
-.card:hover {
-  transform: translateY(-5px);
-  border-color: rgba(216,255,105,.48);
-  box-shadow: 0 18px 45px rgba(0,0,0,.28);
+
+.card:after {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background:
+    linear-gradient(
+        transparent 42%,
+        rgba(8,25,38,.88)
+    );
 }
-@media (prefers-reduced-motion: reduce) {
-  .card img, .g img, .photo img, .card { transition: none; }
-  .card:hover img, .g:hover img, .photo:hover img, .card:hover { transform: none; }
+
+.card-info {
+    position: absolute;
+    z-index: 2;
+    left: 24px;
+    right: 24px;
+    bottom: 24px;
+    color: white;
 }
 
-</style>
-</head>
-<body>
-<nav><div class="wrap nav"><a class="brand" href="#inicio">CALIXT<b>URIST</b></a><div class="links"><a href="#destinos">Destinos</a><a href="#experiencias">Experiencias</a><a href="#galeria">Galería</a><a href="#nosotros">Nosotros</a></div></div></nav>
+.card h3 {
+    font-size: 1.7rem;
+    margin: 0 0 7px;
+}
 
-<header class="hero" id="inicio"><div class="wrap hero-content">
-<div class="tag">El Salvador · Centroamérica</div>
-<h1>Descubre un país extraordinario.</h1>
-<p class="lead">Volcanes, lagos y paisajes únicos. Calixturist te acerca a experiencias inolvidables por El Salvador.</p>
-<a class="button" href="#destinos">Explorar destinos →</a>
-</div></header>
+.card p {
+    margin: 0;
+    color: #F3F7F8;
+    line-height: 1.5;
+}
 
-<section id="destinos"><div class="wrap">
-<div class="head"><div><div class="smalltag">Destinos reales</div><h2>El Salvador, de oriente a occidente.</h2></div><p class="muted">Esta versión usa fotografías de lugares reales que puedes ofrecer en Calixturist. Después podemos sustituirlas por tus propias fotografías profesionales.</p></div>
-<div class="grid">
-<article class="card"><img src="https://elsalvador.travel/system/wp-content/uploads/2018/09/Conchagua-2000x1200.jpg" alt="Volcán de Conchagua, La Unión"><div class="card-info"><h3>Conchagua</h3><p>La Unión · Vistas hacia el Golfo de Fonseca desde uno de los paisajes más impresionantes del oriente.</p></div></article>
-<article class="card"><img src="https://elsalvador.travel/system/wp-content/uploads/2018/09/02-lago-coatepeque.jpg" alt="Lago de Coatepeque, Santa Ana"><div class="card-info"><h3>Lago de Coatepeque</h3><p>Santa Ana · Lago volcánico, paisajes panorámicos y actividades acuáticas.</p></div></article>
-<article class="card"><img src="https://theworldtravelguy.com/wp-content/uploads/2023/07/DSCF3674-2-768x512.jpg" alt="Cráter del Volcán de Santa Ana"><div class="card-info"><h3>Volcán de Santa Ana</h3><p>Santa Ana · Una caminata hasta el cráter del volcán más alto de El Salvador.</p></div></article>
-</div></div></section>
 
-<section id="experiencias"><div class="wrap wide">
-<div class="photo"><img src="https://2.bp.blogspot.com/-KdPQG2H6MU4/Vh_W-dsl4_I/AAAAAAAAAFo/VnuKAdRfslQ/s1600/1.-Navegando-sobre-el-Golfo.jpg" alt="Paseo en lancha por el Golfo de Fonseca"></div>
-<div class="copy"><div><div class="smalltag">Experiencias</div><h3>El Golfo de Fonseca desde el agua.</h3><p class="muted">Paseos en lancha, vistas de islas volcánicas y recorridos por uno de los escenarios naturales más reconocibles de La Unión.</p></div><a class="button" href="#galeria">Ver más →</a></div>
-</div></section>
+/* EFECTO ZOOM */
 
-<section id="galeria"><div class="wrap">
-<div class="head"><div><div class="smalltag">Galería</div><h2>Lugares que hacen que quieras viajar.</h2></div><p class="muted">Las fotografías corresponden a destinos reales de El Salvador, no a paisajes genéricos.</p></div>
-<div class="gallery">
-<div class="g"><img src="https://elsalvador.travel/system/wp-content/uploads/2018/09/Conchagua-2000x1200.jpg" alt="Conchagua"></div>
-<div class="g"><img src="https://elsalvador.travel/system/wp-content/uploads/2018/09/02-lago-coatepeque.jpg" alt="Coatepeque"></div>
-<div class="g"><img src="https://theworldtravelguy.com/wp-content/uploads/2023/07/DSCF3674-2-768x512.jpg" alt="Santa Ana"></div>
-<div class="g"><img src="https://2.bp.blogspot.com/-KdPQG2H6MU4/Vh_W-dsl4_I/AAAAAAAAAFo/VnuKAdRfslQ/s1600/1.-Navegando-sobre-el-Golfo.jpg" alt="Golfo de Fonseca"></div>
-<div class="g"><img src="https://elsalvador.travel/system/wp-content/uploads/2018/09/Conchagua-2000x1200.jpg" alt="Conchagua y Golfo de Fonseca"></div>
-</div>
-<p class="note">Prototipo: antes de publicar comercialmente, conviene usar fotografías propias o imágenes con licencia de uso comercial confirmada.</p>
-</div></section>
-
-<section id="nosotros"><div class="wrap">
-<div class="head"><div><div class="smalltag">Calixturist</div><h2>Viajes con identidad salvadoreña.</h2></div><p class="muted">Una base moderna para presentar tus destinos. Después podemos añadir páginas individuales para cada tour, paquetes de varios días, precios y reservaciones.</p></div>
-</div></section>
-
-<footer><div class="wrap">© 2026 Calixturist · El Salvador</div></footer>
-</body></html>
+.card img,
+.g img,
+.photo img {
+    transition:
+        transform .45s ease,
+        filter .45s ease;
