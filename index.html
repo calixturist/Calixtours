@@ -3,258 +3,935 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Calixturist | Descubre El Salvador</title>
 
 <style>
-
 :root {
-    --bg: #FAFBFC;
-    --panel: #F2F8FB;
-    --text: #102A43;
-    --muted: #52697A;
-    --accent: #59BFE6;
-    --accent-light: #DDF3FB;
-    --white: #FFFFFF;
-    --max: 1200px;
+  --bg:#FAFBFC;
+  --panel:#F2F8FB;
+  --text:#102A43;
+  --muted:#52697A;
+  --accent:#59BFE6;
+  --white:#FFFFFF;
+  --max:1200px;
 }
 
-* {
-    box-sizing: border-box;
-}
+* { box-sizing:border-box; }
 
-html {
-    scroll-behavior: smooth;
-}
+html { scroll-behavior:smooth; }
 
 body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--text);
-    font-family: Inter, Arial, Helvetica, sans-serif;
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Arial, Helvetica, sans-serif;
 }
 
 a {
-    color: inherit;
-    text-decoration: none;
+  color:inherit;
+  text-decoration:none;
 }
 
 img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
 }
 
 .wrap {
-    width: min(var(--max), calc(100% - 34px));
-    margin: auto;
+  width:min(var(--max), calc(100% - 34px));
+  margin:auto;
 }
 
-
-/* NAVEGACIÓN */
-
+/* MENÚ */
 nav {
-    position: fixed;
-    z-index: 20;
-    left: 0;
-    right: 0;
-    top: 0;
-    background: linear-gradient(
-        rgba(255,255,255,.96),
-        rgba(255,255,255,.78),
-        transparent
-    );
+  position:fixed;
+  z-index:20;
+  left:0;
+  right:0;
+  top:0;
+  background:rgba(255,255,255,.92);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(16,42,67,.08);
 }
 
 .nav {
-    min-height: 82px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  min-height:78px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
 }
 
 .brand {
-    font-weight: 900;
-    letter-spacing: .08em;
+  font-weight:900;
+  letter-spacing:.08em;
 }
 
 .brand b {
-    color: var(--accent);
+  color:var(--accent);
 }
 
 .links {
-    display: flex;
-    gap: 25px;
-    font-size: .92rem;
-    color: var(--text);
-    font-weight: 600;
+  display:flex;
+  gap:25px;
+  font-size:.92rem;
+  font-weight:600;
 }
 
-
 /* PORTADA */
-
 .hero {
-    min-height: 100svh;
-    display: flex;
-    align-items: end;
-    position: relative;
-    color: white;
-
-    background:
+  min-height:100vh;
+  display:flex;
+  align-items:flex-end;
+  position:relative;
+  color:white;
+  background:
     linear-gradient(
-        180deg,
-        rgba(4,18,28,.12),
-        rgba(4,18,28,.20) 35%,
-        rgba(7,27,40,.82) 97%
+      180deg,
+      rgba(4,18,28,.12),
+      rgba(4,18,28,.25) 40%,
+      rgba(7,27,40,.85) 100%
     ),
     url('https://elsalvador.travel/system/wp-content/uploads/2018/09/Conchagua-2000x1200.jpg')
     center/cover;
 }
 
 .hero-content {
-    padding: 160px 0 68px;
+  padding:160px 0 70px;
 }
 
 .tag {
-    font-size: .75rem;
-    letter-spacing: .20em;
-    text-transform: uppercase;
-    color: #8DDAF3;
-    margin-bottom: 18px;
+  font-size:.75rem;
+  letter-spacing:.20em;
+  text-transform:uppercase;
+  color:#8DDAF3;
+  margin-bottom:18px;
 }
 
 h1 {
-    font-size: clamp(4rem,10vw,9rem);
-    line-height: .86;
-    letter-spacing: -.06em;
-    margin: 0;
-    max-width: 1000px;
+  font-size:clamp(4rem,10vw,9rem);
+  line-height:.86;
+  letter-spacing:-.06em;
+  margin:0;
+  max-width:1000px;
 }
 
 .lead {
-    font-size: clamp(1rem,1.6vw,1.25rem);
-    max-width: 670px;
-    color: #F5F8FA;
-    margin: 28px 0;
+  font-size:clamp(1rem,1.6vw,1.25rem);
+  max-width:670px;
+  color:#F5F8FA;
+  margin:28px 0;
+  line-height:1.6;
 }
 
 .button {
-    display: inline-block;
-    background: var(--accent);
-    color: #102A43;
-    padding: 15px 22px;
-    border-radius: 999px;
-    font-weight: 800;
-    transition: transform .25s ease,
-                box-shadow .25s ease,
-                background .25s ease;
+  display:inline-block;
+  background:var(--accent);
+  color:#102A43;
+  padding:15px 22px;
+  border-radius:999px;
+  font-weight:800;
+  transition:.25s;
 }
 
 .button:hover {
-    transform: translateY(-2px);
-    background: #77CCE9;
-    box-shadow: 0 10px 28px rgba(42,150,190,.25);
+  transform:translateY(-2px);
+  box-shadow:0 10px 28px rgba(42,150,190,.25);
 }
 
-
 /* SECCIONES */
-
 section {
-    padding: 105px 0;
+  padding:105px 0;
 }
 
 .head {
-    display: grid;
-    grid-template-columns: 1.2fr .8fr;
-    gap: 40px;
-    align-items: end;
-    margin-bottom: 42px;
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  gap:40px;
+  align-items:end;
+  margin-bottom:42px;
 }
 
 h2 {
-    font-size: clamp(2.6rem,5vw,5.2rem);
-    line-height: .96;
-    letter-spacing: -.045em;
-    margin: 0;
+  font-size:clamp(2.6rem,5vw,5.2rem);
+  line-height:.96;
+  letter-spacing:-.045em;
+  margin:0;
 }
 
 .muted {
-    color: var(--muted);
-    line-height: 1.7;
+  color:var(--muted);
+  line-height:1.7;
 }
 
 .smalltag {
-    color: #249BC7;
-    letter-spacing: .15em;
-    text-transform: uppercase;
-    font-size: .72rem;
-    font-weight: 800;
-    margin-bottom: 10px;
+  color:#249BC7;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+  font-size:.72rem;
+  font-weight:800;
+  margin-bottom:10px;
 }
 
-
 /* DESTINOS */
-
 .grid {
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    gap: 18px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
 }
 
 .card {
-    min-height: 510px;
-    border-radius: 28px;
-    overflow: hidden;
-    position: relative;
-    border: 1px solid rgba(16,42,67,.10);
-    box-shadow: 0 12px 34px rgba(16,42,67,.08);
-    cursor: pointer;
-
-    transition:
-        transform .35s ease,
-        border-color .35s ease,
-        box-shadow .35s ease;
+  min-height:510px;
+  border-radius:28px;
+  overflow:hidden;
+  position:relative;
+  border:1px solid rgba(16,42,67,.10);
+  box-shadow:0 12px 34px rgba(16,42,67,.08);
+  cursor:pointer;
+  transition:.35s;
 }
 
 .card:after {
-    content: "";
-    position: absolute;
-    inset: 0;
-
-    background:
-    linear-gradient(
-        transparent 42%,
-        rgba(8,25,38,.88)
-    );
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    transparent 42%,
+    rgba(8,25,38,.88)
+  );
 }
 
 .card-info {
-    position: absolute;
-    z-index: 2;
-    left: 24px;
-    right: 24px;
-    bottom: 24px;
-    color: white;
+  position:absolute;
+  z-index:2;
+  left:24px;
+  right:24px;
+  bottom:24px;
+  color:white;
 }
 
 .card h3 {
-    font-size: 1.7rem;
-    margin: 0 0 7px;
+  font-size:1.7rem;
+  margin:0 0 7px;
 }
 
 .card p {
-    margin: 0;
-    color: #F3F7F8;
-    line-height: 1.5;
+  margin:0;
+  color:#F3F7F8;
+  line-height:1.5;
 }
 
-
-/* EFECTO ZOOM */
-
+/* ZOOM DE FOTOS */
 .card img,
 .g img,
 .photo img {
-    transition:
-        transform .45s ease,
-        filter .45s ease;
+  transition:transform .45s ease, filter .45s ease;
+}
+
+.card:hover img,
+.g:hover img,
+.photo:hover img {
+  transform:scale(1.065);
+  filter:brightness(1.06);
+}
+
+.card:hover {
+  transform:translateY(-5px);
+  border-color:rgba(89,191,230,.65);
+  box-shadow:0 18px 45px rgba(16,42,67,.18);
+}
+
+/* EXPERIENCIAS */
+.wide {
+  display:grid;
+  grid-template-columns:1.25fr .75fr;
+  gap:18px;
+}
+
+.photo {
+  min-height:620px;
+  border-radius:28px;
+  overflow:hidden;
+}
+
+.copy {
+  background:var(--panel);
+  border:1px solid rgba(16,42,67,.08);
+  border-radius:28px;
+  padding:38px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+
+.copy h3 {
+  font-size:clamp(2.2rem,4vw,4.5rem);
+  line-height:.98;
+  letter-spacing:-.04em;
+  margin:0;
+}
+
+/* GALERÍA */
+.gallery {
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr;
+  grid-auto-rows:260px;
+  gap:16px;
+}
+
+.g {
+  overflow:hidden;
+  border-radius:24px;
+}
+
+.g:first-child {
+  grid-row:span 2;
+}
+
+#nosotros {
+  background:var(--panel);
+}
+
+footer {
+  border-top:1px solid rgba(16,42,67,.10);
+  padding:30px 0;
+  color:#647A89;
+  background:#F2F8FB;
+}
+
+@media(max-width:850px) {
+  .links { display:none; }
+
+  .head,
+  .wide {
+    grid-template-columns:1fr;
+  }
+
+  .grid {
+    grid-template-columns:1fr;
+  }
+
+  .card {
+    min-height:430px;
+  }
+
+  .gallery {
+    grid-template-columns:1fr 1fr;
+  }
+
+  .g:first-child {
+    grid-column:span 2;
+    grid-row:span 1;
+  }
+
+  h1 {
+    font-size:clamp(3.5rem,17vw,6rem);
+  }
+}
+</style>
+</head>
+
+<body>
+<!-- MENÚ -->
+<nav>
+  <div class="wrap nav">
+
+    <a class="brand" href="#inicio">
+      CALIXT<b>URIST</b>
+    </a>
+
+    <div class="links">
+      <a href="#destinos">Destinos</a>
+      <a href="#experiencias">Experiencias</a>
+      <a href="#galeria">Galería</a>
+      <a href="#nosotros">Nosotros</a>
+    </div>
+
+  </div>
+</nav>
+
+
+<!-- PORTADA -->
+<header class="hero" id="inicio">
+
+  <div class="wrap hero-content">
+
+    <div class="tag">
+      EL SALVADOR · CENTROAMÉRICA
+    </div>
+
+    <h1>
+      Descubre un país extraordinario.
+    </h1>
+
+    <p class="lead">
+      Volcanes, lagos y paisajes únicos.
+      Calixturist te acerca a experiencias inolvidables
+      por El Salvador.
+    </p>
+
+    <a class="button" href="#destinos">
+      Explorar destinos →
+    </a>
+
+  </div>
+
+</header>
+
+
+<!-- DESTINOS -->
+<section id="destinos">
+
+  <div class="wrap">
+
+    <div class="head">
+
+      <div>
+        <div class="smalltag">DESTINOS</div>
+
+        <h2>
+          El Salvador, de oriente a occidente.
+        </h2>
+      </div>
+
+      <p class="muted">
+        Descubre paisajes extraordinarios, cultura y aventura
+        en algunos de los destinos más impresionantes
+        de El Salvador.
+      </p>
+
+    </div>
+
+
+    <div class="grid">
+
+      <!-- CONCHAGUA -->
+      <article class="card">
+
+        <img
+          src="https://elsalvador.travel/system/wp-content/uploads/2018/09/Conchagua-2000x1200.jpg"
+          alt="Volcán de Conchagua, La Unión">
+
+        <div class="card-info">
+
+          <h3>Conchagua</h3>
+
+          <p>
+            La Unión · Vistas hacia el Golfo de Fonseca
+            desde uno de los paisajes más impresionantes
+            del oriente.
+          </p>
+
+        </div>
+
+      </article>
+
+
+      <!-- COATEPEQUE -->
+      <article class="card">
+
+        <img
+          src="https://elsalvador.travel/system/wp-content/uploads/2018/09/02-lago-coatepeque.jpg"
+          alt="Lago de Coatepeque">
+
+        <div class="card-info">
+
+          <h3>Lago de Coatepeque</h3>
+
+          <p>
+            Santa Ana · Un espectacular lago volcánico
+            rodeado de naturaleza y paisajes inolvidables.
+          </p>
+
+        </div>
+
+      </article>
+
+
+      <!-- VOLCÁN DE SANTA ANA -->
+      <article class="card">
+
+        <img
+          src="https://theworldtravelguy.com/wp-content/uploads/2023/07/DSCF3674-2-768x512.jpg"
+          alt="Volcán de Santa Ana">
+
+        <div class="card-info">
+
+          <h3>Volcán de Santa Ana</h3>
+
+          <p>
+            Santa Ana · Una aventura hasta el cráter
+            del volcán más alto de El Salvador.
+          </p>
+
+        </div>
+
+      </article>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- EXPERIENCIAS -->
+<section id="experiencias">
+
+  <div class="wrap wide">
+
+    <div class="photo">
+
+      <img
+        src="https://2.bp.blogspot.com/-KdPQG2H6MU4/Vh_W-dsl4_I/AAAAAAAAAFo/VnuKAdRfslQ/s1600/1.-Navegando-sobre-el-Golfo.jpg"
+        alt="Golfo de Fonseca">
+
+    </div>
+
+
+    <div class="copy">
+
+      <div>
+
+        <div class="smalltag">
+          EXPERIENCIAS
+        </div>
+
+        <h3>
+          El Golfo de Fonseca desde el agua.
+        </h3>
+
+        <p class="muted">
+          Paseos en lancha, vistas de islas volcánicas
+          y recorridos por uno de los escenarios naturales
+          más impresionantes de La Unión.
+        </p>
+
+      </div>
+
+      <a class="button" href="#galeria">
+        Descubrir más →
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- GALERÍA -->
+<section id="galeria">
+
+  <div class="wrap">
+
+    <div class="head">
+
+      <div>
+
+        <div class="smalltag">
+          GALERÍA
+        </div>
+
+        <h2>
+          Lugares que hacen que quieras viajar.
+        </h2>
+
+      </div>
+
+      <p class="muted">
+        Inspírate con algunos de los paisajes que hacen
+        de El Salvador un destino lleno de naturaleza,
+        aventura y momentos inolvidables.
+      </p>
+
+    </div>
+
+
+    <div class="gallery">
+
+      <div class="g">
+        <img
+          src="https://elsalvador.travel/system/wp-content/uploads/2018/09/Conchagua-2000x1200.jpg"
+          alt="Conchagua">
+      </div>
+
+
+      <div class="g">
+        <img
+          src="https://elsalvador.travel/system/wp-content/uploads/2018/09/02-lago-coatepeque.jpg"
+          alt="Lago de Coatepeque">
+      </div>
+
+
+      <div class="g">
+        <img
+          src="https://theworldtravelguy.com/wp-content/uploads/2023/07/DSCF3674-2-768x512.jpg"
+          alt="Volcán de Santa Ana">
+      </div>
+
+
+      <div class="g">
+        <img
+          src="https://2.bp.blogspot.com/-KdPQG2H6MU4/Vh_W-dsl4_I/AAAAAAAAAFo/VnuKAdRfslQ/s1600/1.-Navegando-sobre-el-Golfo.jpg"
+          alt="Golfo de Fonseca">
+      </div>
+
+
+      <div class="g">
+        <img
+          src="https://elsalvador.travel/system/wp-content/uploads/2018/09/Conchagua-2000x1200.jpg"
+          alt="Conchagua y Golfo de Fonseca">
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- NOSOTROS -->
+<section id="nosotros">
+
+  <div class="wrap">
+
+    <div class="head">
+
+      <div>
+
+        <div class="smalltag">
+          CALIXTURIST
+        </div>
+
+        <h2>
+          Viajes con identidad salvadoreña.
+        </h2>
+
+      </div>
+
+      <p class="muted">
+        Queremos acercarte a los paisajes, la cultura
+        y las experiencias que hacen especial a El Salvador,
+        con recorridos pensados para disfrutar cada momento.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- PIE DE PÁGINA -->
+<footer>
+
+  <div class="wrap">
+    © 2026 Calixturist · El Salvador
+  </div>
+
+</footer>
+
+<!-- MENÚ -->
+<nav>
+  <div class="wrap nav">
+
+    <a class="brand" href="#inicio">
+      CALIXT<b>URIST</b>
+    </a>
+
+    <div class="links">
+      <a href="#destinos">Destinos</a>
+      <a href="#experiencias">Experiencias</a>
+      <a href="#galeria">Galería</a>
+      <a href="#nosotros">Nosotros</a>
+    </div>
+
+  </div>
+</nav>
+
+
+<!-- PORTADA -->
+<header class="hero" id="inicio">
+
+  <div class="wrap hero-content">
+
+    <div class="tag">
+      EL SALVADOR · CENTROAMÉRICA
+    </div>
+
+    <h1>
+      Descubre un país extraordinario.
+    </h1>
+
+    <p class="lead">
+      Volcanes, lagos y paisajes únicos.
+      Calixturist te acerca a experiencias inolvidables
+      por El Salvador.
+    </p>
+
+    <a class="button" href="#destinos">
+      Explorar destinos →
+    </a>
+
+  </div>
+
+</header>
+
+
+<!-- DESTINOS -->
+<section id="destinos">
+
+  <div class="wrap">
+
+    <div class="head">
+
+      <div>
+        <div class="smalltag">DESTINOS</div>
+
+        <h2>
+          El Salvador, de oriente a occidente.
+        </h2>
+      </div>
+
+      <p class="muted">
+        Descubre paisajes extraordinarios, cultura y aventura
+        en algunos de los destinos más impresionantes
+        de El Salvador.
+      </p>
+
+    </div>
+
+
+    <div class="grid">
+
+      <!-- CONCHAGUA -->
+      <article class="card">
+
+        <img
+          src="https://elsalvador.travel/system/wp-content/uploads/2018/09/Conchagua-2000x1200.jpg"
+          alt="Volcán de Conchagua, La Unión">
+
+        <div class="card-info">
+
+          <h3>Conchagua</h3>
+
+          <p>
+            La Unión · Vistas hacia el Golfo de Fonseca
+            desde uno de los paisajes más impresionantes
+            del oriente.
+          </p>
+
+        </div>
+
+      </article>
+
+
+      <!-- COATEPEQUE -->
+      <article class="card">
+
+        <img
+          src="https://elsalvador.travel/system/wp-content/uploads/2018/09/02-lago-coatepeque.jpg"
+          alt="Lago de Coatepeque">
+
+        <div class="card-info">
+
+          <h3>Lago de Coatepeque</h3>
+
+          <p>
+            Santa Ana · Un espectacular lago volcánico
+            rodeado de naturaleza y paisajes inolvidables.
+          </p>
+
+        </div>
+
+      </article>
+
+
+      <!-- VOLCÁN DE SANTA ANA -->
+      <article class="card">
+
+        <img
+          src="https://theworldtravelguy.com/wp-content/uploads/2023/07/DSCF3674-2-768x512.jpg"
+          alt="Volcán de Santa Ana">
+
+        <div class="card-info">
+
+          <h3>Volcán de Santa Ana</h3>
+
+          <p>
+            Santa Ana · Una aventura hasta el cráter
+            del volcán más alto de El Salvador.
+          </p>
+
+        </div>
+
+      </article>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- EXPERIENCIAS -->
+<section id="experiencias">
+
+  <div class="wrap wide">
+
+    <div class="photo">
+
+      <img
+        src="https://2.bp.blogspot.com/-KdPQG2H6MU4/Vh_W-dsl4_I/AAAAAAAAAFo/VnuKAdRfslQ/s1600/1.-Navegando-sobre-el-Golfo.jpg"
+        alt="Golfo de Fonseca">
+
+    </div>
+
+
+    <div class="copy">
+
+      <div>
+
+        <div class="smalltag">
+          EXPERIENCIAS
+        </div>
+
+        <h3>
+          El Golfo de Fonseca desde el agua.
+        </h3>
+
+        <p class="muted">
+          Paseos en lancha, vistas de islas volcánicas
+          y recorridos por uno de los escenarios naturales
+          más impresionantes de La Unión.
+        </p>
+
+      </div>
+
+      <a class="button" href="#galeria">
+        Descubrir más →
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- GALERÍA -->
+<section id="galeria">
+
+  <div class="wrap">
+
+    <div class="head">
+
+      <div>
+
+        <div class="smalltag">
+          GALERÍA
+        </div>
+
+        <h2>
+          Lugares que hacen que quieras viajar.
+        </h2>
+
+      </div>
+
+      <p class="muted">
+        Inspírate con algunos de los paisajes que hacen
+        de El Salvador un destino lleno de naturaleza,
+        aventura y momentos inolvidables.
+      </p>
+
+    </div>
+
+
+    <div class="gallery">
+
+      <div class="g">
+        <img
+          src="https://elsalvador.travel/system/wp-content/uploads/2018/09/Conchagua-2000x1200.jpg"
+          alt="Conchagua">
+      </div>
+
+
+      <div class="g">
+        <img
+          src="https://elsalvador.travel/system/wp-content/uploads/2018/09/02-lago-coatepeque.jpg"
+          alt="Lago de Coatepeque">
+      </div>
+
+
+      <div class="g">
+        <img
+          src="https://theworldtravelguy.com/wp-content/uploads/2023/07/DSCF3674-2-768x512.jpg"
+          alt="Volcán de Santa Ana">
+      </div>
+
+
+      <div class="g">
+        <img
+          src="https://2.bp.blogspot.com/-KdPQG2H6MU4/Vh_W-dsl4_I/AAAAAAAAAFo/VnuKAdRfslQ/s1600/1.-Navegando-sobre-el-Golfo.jpg"
+          alt="Golfo de Fonseca">
+      </div>
+
+
+      <div class="g">
+        <img
+          src="https://elsalvador.travel/system/wp-content/uploads/2018/09/Conchagua-2000x1200.jpg"
+          alt="Conchagua y Golfo de Fonseca">
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- NOSOTROS -->
+<section id="nosotros">
+
+  <div class="wrap">
+
+    <div class="head">
+
+      <div>
+
+        <div class="smalltag">
+          CALIXTURIST
+        </div>
+
+        <h2>
+          Viajes con identidad salvadoreña.
+        </h2>
+
+      </div>
+
+      <p class="muted">
+        Queremos acercarte a los paisajes, la cultura
+        y las experiencias que hacen especial a El Salvador,
+        con recorridos pensados para disfrutar cada momento.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- PIE DE PÁGINA -->
+<footer>
+
+  <div class="wrap">
+    © 2026 Calixturist · El Salvador
+  </div>
+
+</footer>
+
+</body>
+</html>
