@@ -4,20 +4,20 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="theme-color" content="#143f49" />
-    <title>Calixturist | El Salvador, a tu manera</title>
+    <title>Calixtours | El Salvador, a tu manera</title>
     <meta
       name="description"
-      content="Descubre Conchagua, Espíritu de la Montaña, Coatepeque y más destinos de El Salvador. Agrega tus lugares favoritos y arma tu idea de viaje con Calixturist."
+      content="Descubre Conchagua, Espíritu de la Montaña, Coatepeque y más destinos de El Salvador. Agrega tus lugares favoritos y arma tu idea de viaje con Calixtours."
     />
-    <link rel="canonical" href="https://calixturist.github.io/Calixturist/" />
-    <link rel="alternate" hreflang="es" href="https://calixturist.github.io/Calixturist/" />
-    <link rel="alternate" hreflang="en" href="https://calixturist.github.io/Calixturist/en.html" />
-    <link rel="alternate" hreflang="x-default" href="https://calixturist.github.io/Calixturist/" />
+    <link rel="canonical" href="https://calixturist.github.io/Calixtours/" />
+    <link rel="alternate" hreflang="es" href="https://calixturist.github.io/Calixtours/" />
+    <link rel="alternate" hreflang="en" href="https://calixturist.github.io/Calixtours/en.html" />
+    <link rel="alternate" hreflang="x-default" href="https://calixturist.github.io/Calixtours/" />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="es_SV" />
     <meta
       property="og:title"
-      content="Calixturist | El Salvador, a tu manera"
+      content="Calixtours | El Salvador, a tu manera"
     />
     <meta
       property="og:description"
@@ -25,7 +25,7 @@
     />
     <meta
       property="og:url"
-      content="https://calixturist.github.io/Calixturist/"
+      content="https://calixturist.github.io/Calixtours/"
     />
     <meta
       property="og:image"
@@ -1357,12 +1357,12 @@ html:not(.js) .add-destination{display:none}
     <a class="skip" href="#contenido">Saltar al contenido</a>
     <header class="site-header">
       <div class="wrap nav">
-        <a class="brand" href="#inicio" aria-label="Calixturist, inicio"
+        <a class="brand" href="#inicio" aria-label="Calixtours, inicio"
           ><svg viewBox="0 0 44 44" aria-hidden="true">
             <path d="M4 31 16 12l9 14 6-8 10 13M6 36h33M14 26l3-5 5 7" />
             <circle cx="32" cy="10" r="4" /></svg
           ><span
-            >Calix<span class="brand-light">turist</span
+            >Calix<span class="brand-light">tours</span
             ><small>EL SALVADOR</small></span
           ></a
         >
@@ -1666,7 +1666,7 @@ html:not(.js) .add-destination{display:none}
           <p class="eyebrow">NUESTRA ESENCIA</p>
           <h2>De aquí.<br /><em>Para que lo vivas.</em></h2>
           <p>
-            Calixturist nace de las ganas de compartir El Salvador: sus
+            Calixtours nace de las ganas de compartir El Salvador: sus
             paisajes, sus caminos y esos lugares que hacen especial volver.
           </p>
           <p>
@@ -1734,34 +1734,22 @@ html:not(.js) .add-destination{display:none}
 </section>
 <p id="places-error" class="field-error" role="alert" hidden></p>
 <div class="fields">
-                <label>Fecha aproximada <span class="optional">(opcional)</span><input type="date" name="date" id="trip-date" /></label
-                ><label
-                  >¿Cuántas personas?<input
-                    type="number"
-                    name="people"
-                    min="1"
-                    max="50"
-                    step="1"
-                    value="2"
-                    required
-                    inputmode="numeric" /></label
-                ><label
-                  >Duración<select name="duration">
-                    <option>Por definir</option>
-                    <option>1 día</option>
-                    <option>2 días</option>
-                    <option>3 días</option>
-                    <option>4 días o más</option>
-                  </select></label
-                ><label
-                  >Punto de salida<select name="departure">
-                    <option>San Miguel</option>
-                    <option>La Unión</option>
-                    <option>San Salvador</option>
-                    <option>Otro, por coordinar</option>
-                  </select></label
-                >
-              </div>
+  <label for="trip-date">Día de llegada <span class="optional">(opcional)</span><input type="date" name="date" id="trip-date" /></label>
+  <label for="pickup-type">¿Dónde te recogemos?<select name="pickupType" id="pickup-type" aria-describedby="pickup-help" required>
+    <option value="">Selecciona una opción</option>
+    <option value="airport">Aeropuerto</option>
+    <option value="hotel">Hotel o alojamiento</option>
+    <option value="other">Otro lugar</option>
+    <option value="undecided">Aún no lo sé</option>
+  </select></label>
+  <div id="pickup-details" class="full" hidden>
+    <label for="pickup-location" id="pickup-location-label"></label>
+    <input type="text" id="pickup-location" name="pickupLocation" maxlength="180" aria-describedby="pickup-help" disabled />
+  </div>
+  <p id="pickup-help" class="form-intro full" style="margin:0">Elige el tipo de lugar y añade sus detalles. Confirmaremos contigo el punto exacto y el horario antes del viaje.</p>
+  <label>¿Cuántas personas?<input type="number" name="people" min="1" max="50" step="1" value="2" required inputmode="numeric" /></label>
+  <label>Duración<select name="duration"><option>Por definir</option><option>1 día</option><option>2 días</option><option>3 días</option><option>4 días o más</option></select></label>
+</div>
               <fieldset>
                 <legend>¿Qué quieres consultar?</legend>
                 <div class="checks">
@@ -1829,7 +1817,7 @@ html:not(.js) .add-destination{display:none}
             >
               <p class="eyebrow">UNA IDEA PARA EMPEZAR</p>
               <h3 id="result-title">Tu viaje ya tiene forma.</h3>
-              <p>Este resumen aún no se ha enviado a Calixturist.</p>
+              <p>Este resumen aún no se ha enviado a Calixtours.</p>
               <label for="trip-summary">Tu consulta, lista para compartir</label
               ><textarea id="trip-summary" rows="12" readonly></textarea>
               <div class="actions">
@@ -1889,9 +1877,7 @@ html:not(.js) .add-destination{display:none}
           <details>
             <summary>¿De dónde salen los viajes?</summary>
             <p>
-              San Miguel es el punto de partida sugerido. Puedes indicar otro
-              lugar en el planificador; la recogida y el regreso deben acordarse
-              antes de confirmar el servicio.
+              Puedes solicitar recogida en un aeropuerto, hotel, alojamiento u otro lugar. Selecciona una opción en el planificador; el punto exacto, el horario y el regreso se acuerdan antes de confirmar el servicio.
             </p>
           </details>
           <details>
@@ -1927,7 +1913,7 @@ html:not(.js) .add-destination{display:none}
     <footer>
       <div class="wrap footer-top">
         <div>
-          <a class="footer-brand" href="#inicio">Calixturist<span>↗</span></a>
+          <a class="footer-brand" href="#inicio">Calixtours<span>↗</span></a>
           <p>Un país pequeño.<br />Recuerdos inmensos.</p>
         </div>
         <div>
@@ -1974,7 +1960,7 @@ html:not(.js) .add-destination{display:none}
         </details>
       </div>
       <div class="wrap footer-bottom">
-        <span>© <span id="year">2026</span> Calixturist</span
+        <span>© <span id="year">2026</span> Calixtours</span
         ><span>Con esencia salvadoreña.</span
         ><a href="#inicio">Volver arriba ↑</a>
       </div>
@@ -1983,7 +1969,7 @@ html:not(.js) .add-destination{display:none}
 <script>/* Contacto real del negocio: añadir solo después de verificar el número.
    Formato internacional, solo dígitos; ejemplo de formato: código de país + número.
    Vacío mantiene el planificador en modo copiar/compartir, sin simular envíos. */
-window.CALIXTURIST_CONFIG = Object.freeze({ whatsappNumber: "" });
+window.CALIXTOURS_CONFIG = Object.freeze({ whatsappNumber: "" });
 
 "use strict";
 document.documentElement.classList.add("js");
@@ -2031,6 +2017,31 @@ for (const button of document.querySelectorAll("[data-filter]")) {
 const form = document.querySelector("#trip-form");
 form.hidden = false;
 const result = document.querySelector("#trip-result");
+
+const pickupType = document.querySelector("#pickup-type");
+const pickupDetails = document.querySelector("#pickup-details");
+const pickupLocation = document.querySelector("#pickup-location");
+const pickupLabel = document.querySelector("#pickup-location-label");
+const pickupPrompts = {"airport": ["Nombre o código del aeropuerto", "Ej.: Aeropuerto Internacional de El Salvador (SAL)"], "hotel": ["Nombre del alojamiento y ciudad", "Ej.: nombre del hotel, San Miguel"], "other": ["Dirección o punto de encuentro y ciudad", "Ej.: parque central, La Unión"]};
+const pickupDrafts = {};
+let lastPickupType = "";
+function updatePickup() {
+  if (lastPickupType) pickupDrafts[lastPickupType] = pickupLocation.value;
+  const prompt = pickupPrompts[pickupType.value];
+  pickupDetails.hidden = !prompt;
+  pickupLocation.disabled = !prompt;
+  pickupLocation.required = Boolean(prompt);
+  pickupLocation.setCustomValidity("");
+  pickupLocation.value = pickupDrafts[pickupType.value] || "";
+  if (prompt) {
+    pickupLabel.textContent = prompt[0];
+    pickupLocation.placeholder = prompt[1];
+  }
+  lastPickupType = pickupType.value;
+}
+pickupType.addEventListener("change", updatePickup);
+pickupLocation.addEventListener("input", () => pickupLocation.setCustomValidity(""));
+updatePickup();
 
 const dateInput = document.querySelector("#trip-date");
 const summary = document.querySelector("#trip-summary");
@@ -2182,6 +2193,9 @@ form.addEventListener("submit", (e) => {
     return;
   }
   dateInput.setCustomValidity("");
+  if (!pickupLocation.disabled && !pickupLocation.value.trim()) {
+    pickupLocation.setCustomValidity("Indica el lugar de recogida o elige «Aún no lo sé».");
+  }
   if (!form.reportValidity()) return;
   if (customPlace.value.trim() && !addCustomPlace()) return;
   if (!selectedPlaces.size) {
@@ -2191,6 +2205,7 @@ form.addEventListener("submit", (e) => {
     return;
   }
   const data = new FormData(form);
+  const pickup = pickupType.selectedOptions[0].textContent + (pickupLocation.disabled ? "" : `: ${pickupLocation.value.trim()}`);
   const rawDate = String(data.get("date") || "");
   const formattedDate = rawDate
     ? new Intl.DateTimeFormat("es-SV", { dateStyle: "long" }).format(
@@ -2199,9 +2214,9 @@ form.addEventListener("submit", (e) => {
     : "Por definir";
   const services = data.getAll("services").join(", ") || "Por definir";
   const notes = String(data.get("notes") || "").trim();
-  summary.value = `Hola, Calixturist. Me gustaría consultar este viaje:\n\nLugares que quiero visitar:\n${[...selectedPlaces.values()].map(name => `• ${name}`).join("\n")}\n\nOrden del recorrido: por coordinar según los días y traslados.\nFecha aproximada: ${formattedDate}\nPersonas: ${data.get("people")}\nDuración: ${data.get("duration")}\nSalida: ${data.get("departure")}\nServicios que me interesan: ${services}${notes ? `\nComentarios: ${notes}` : ""}\n\nPor favor, confirmar disponibilidad, precio total, servicios incluidos y condiciones de cambio o cancelación.\n\nEsta es una consulta, no una reserva confirmada.`;
+  summary.value = `Hola, Calixtours. Me gustaría consultar este viaje:\n\nLugares que quiero visitar:\n${[...selectedPlaces.values()].map(name => `• ${name}`).join("\n")}\n\nOrden del recorrido: por coordinar según los días y traslados.\nDía de llegada: ${formattedDate}\nPersonas: ${data.get("people")}\nDuración: ${data.get("duration")}\nLugar de recogida: ${pickup}\nServicios que me interesan: ${services}${notes ? `\nComentarios: ${notes}` : ""}\n\nPor favor, confirmar disponibilidad, precio total, servicios incluidos y condiciones de cambio o cancelación.\n\nEsta es una consulta, no una reserva confirmada.`;
   status.textContent = "";
-  const number = window.CALIXTURIST_CONFIG?.whatsappNumber || "";
+  const number = window.CALIXTOURS_CONFIG?.whatsappNumber || "";
   const validNumber = /^[1-9]\d{7,14}$/.test(number);
   whatsappLink.hidden = !validNumber;
   if (validNumber)
@@ -2227,7 +2242,7 @@ document.querySelector("#copy-trip").addEventListener("click", async () => {
 shareButton.addEventListener("click", async () => {
   try {
     await navigator.share({
-      title: "Mi idea de viaje con Calixturist",
+      title: "Mi idea de viaje con Calixtours",
       text: summary.value,
     });
     status.textContent =
