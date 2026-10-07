@@ -2264,5 +2264,177 @@ photoDialog.querySelector('.close-photo').addEventListener('click',()=>photoDial
 photoDialog.addEventListener('close',()=>{document.body.style.overflow='';});
 photoDialog.addEventListener('click',event=>{if(event.target===photoDialog){const r=photoDialog.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)photoDialog.close();}});
 
-</script></body>
+</script><script>
+/* Local pickup suggestions: no API, tracking, location permission or network request. */
+(() => {
+  'use strict';
+  const input = document.querySelector('#pickup-location');
+  const type = document.querySelector('#pickup-type');
+  const container = document.querySelector('#pickup-details');
+  if (!input || !type || !container) return;
+  const en = document.documentElement.lang.startsWith('en');
+  const copy = en ? {
+    help: 'Start typing and choose a suggestion, or enter any other location. This is a short list, not a complete directory. For a city or area, we will arrange the exact address with you.',
+    placeholder: 'Search by name or city, or enter an address',
+    list: 'Suggested pickup locations',
+    empty: 'No suggestions found. You can keep the location you typed.',
+    count: n => `${n} suggestions. Choose one or keep typing.`,
+    selected: name => `Selected: ${name}`,
+    city: 'City or area · exact address to be arranged',
+    airport: 'Airport', hotel: 'Hotel or accommodation',
+    pending: 'exact meeting point to be arranged'
+  } : {
+    help: 'Empieza a escribir y elige una sugerencia, o indica cualquier otro lugar. Es una lista breve, no un directorio completo. Si eliges una ciudad o zona, acordaremos contigo la dirección exacta.',
+    placeholder: 'Busca por nombre o ciudad, o escribe una dirección',
+    list: 'Lugares de recogida sugeridos',
+    empty: 'No encontramos sugerencias. Puedes conservar el lugar que escribiste.',
+    count: n => `${n} sugerencias. Elige una o sigue escribiendo.`,
+    selected: name => `Seleccionado: ${name}`,
+    city: 'Ciudad o zona · dirección exacta por acordar',
+    airport: 'Aeropuerto', hotel: 'Hotel o alojamiento',
+    pending: 'punto exacto por acordar'
+  };
+  const airports = [
+    {name: en ? 'El Salvador International Airport (SAL)' : 'Aeropuerto Internacional de El Salvador (SAL)', aliases: 'comalapa oscar arnulfo romero monseñor san luis talpa', kind: 'airport'},
+    {name: en ? 'Ilopango International Airport' : 'Aeropuerto Internacional de Ilopango', aliases: 'ils san salvador', kind: 'airport'}
+  ];
+  // Hotel names checked against official hotel websites on 2026-10-06.
+  const hotels = [
+    {name: 'Hotel Trópico Inn — San Miguel', aliases: 'tropico roosevelt', kind: 'hotel'},
+    {name: 'Comfort Inn Real San Miguel', aliases: 'san miguel', kind: 'hotel'},
+    {name: 'Barceló San Salvador', aliases: 'barcelo san benito', kind: 'hotel'},
+    {name: 'Quality Hotel Real Aeropuerto — El Salvador', aliases: 'comalapa airport aeropuerto san luis talpa', kind: 'hotel'}
+  ];
+  const cities = ['San Miguel', 'La Unión', 'San Salvador', 'Santa Tecla', 'Antiguo Cuscatlán', 'Santa Ana', 'San Luis Talpa', 'Puerto de La Libertad', 'El Tunco', 'El Zonte', 'El Cuco', 'Conchagua', 'Suchitoto', 'Lago de Coatepeque', 'Usulután', 'San Vicente', 'Zacatecoluca', 'Sonsonate', 'San Alejo', 'Agua Fría, La Unión'].map(name => ({name, kind: 'city'}));
+  const normalize = value => value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+  const help = document.createElement('p');
+  help.id = 'pickup-suggestion-help';
+  help.className = 'form-intro pickup-suggestion-help';
+  help.textContent = copy.help;
+  const list = document.createElement('ul');
+  list.id = 'pickup-suggestions';
+  list.className = 'pickup-suggestions';
+  list.setAttribute('role', 'listbox');
+  list.setAttribute('aria-label', copy.list);
+  list.hidden = true;
+  const status = document.createElement('p');
+  status.id = 'pickup-suggestion-status';
+  status.className = 'form-intro pickup-suggestion-status';
+  status.setAttribute('role', 'status');
+  status.setAttribute('aria-live', 'polite');
+  status.setAttribute('aria-atomic', 'true');
+  container.append(list, help, status);
+  input.setAttribute('role', 'combobox');
+  input.setAttribute('aria-autocomplete', 'list');
+  input.setAttribute('aria-controls', list.id);
+  input.setAttribute('aria-expanded', 'false');
+  input.setAttribute('autocomplete', 'off');
+  input.setAttribute('aria-describedby', 'pickup-help pickup-suggestion-help');
+  let results = [];
+  let active = -1;
+  let selecting = false;
+  function close() {
+    list.hidden = true;
+    input.setAttribute('aria-expanded', 'false');
+    input.removeAttribute('aria-activedescendant');
+    active = -1;
+  }
+  function choose(index) {
+    const item = results[index];
+    if (!item) return;
+    input.value = item.kind === 'city' ? `${item.name} (${copy.pending})` : item.name;
+    input.setCustomValidity('');
+    selecting = true;
+    input.dispatchEvent(new Event('input', {bubbles: true}));
+    input.dispatchEvent(new Event('change', {bubbles: true}));
+    close();
+    input.focus({preventScroll: true});
+    selecting = false;
+    status.textContent = copy.selected(item.name);
+  }
+  function render() {
+    if (selecting || input.disabled) return;
+    const terms = normalize(input.value).split(' ').filter(Boolean);
+    const source = type.value === 'airport' ? airports : type.value === 'hotel' ? hotels : cities;
+    results = source.filter(item => {
+      const haystack = normalize(`${item.name} ${item.aliases || ''}`);
+      return terms.every(term => haystack.includes(term));
+    }).slice(0, 6);
+    active = -1;
+    input.removeAttribute('aria-activedescendant');
+    list.replaceChildren();
+    results.forEach((item, index) => {
+      const option = document.createElement('li');
+      option.id = `pickup-option-${index}`;
+      option.setAttribute('role', 'option');
+      option.setAttribute('aria-selected', 'false');
+      const title = document.createElement('strong');
+      title.textContent = item.name;
+      const detail = document.createElement('span');
+      detail.textContent = copy[item.kind];
+      option.append(title, detail);
+      option.addEventListener('mousedown', event => event.preventDefault());
+      option.addEventListener('click', () => choose(index));
+      list.append(option);
+    });
+    list.hidden = !results.length;
+    input.setAttribute('aria-expanded', String(Boolean(results.length)));
+    status.textContent = results.length ? copy.count(results.length) : copy.empty;
+  }
+  function highlight(index) {
+    active = index;
+    [...list.children].forEach((option, i) => option.setAttribute('aria-selected', String(i === active)));
+    const option = list.children[active];
+    if (option) {
+      input.setAttribute('aria-activedescendant', option.id);
+      option.scrollIntoView({block: 'nearest'});
+    }
+  }
+  input.addEventListener('input', render);
+  input.addEventListener('focus', render);
+  input.addEventListener('click', () => { if (list.hidden) render(); });
+  input.addEventListener('keydown', event => {
+    if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+      event.preventDefault();
+      if (list.hidden) render();
+      if (!results.length) return;
+      const next = event.key === 'ArrowDown' ? (active + 1) % results.length : (active <= 0 ? results.length - 1 : active - 1);
+      highlight(next);
+    } else if (event.key === 'Enter' && !list.hidden && active >= 0) {
+      event.preventDefault();
+      choose(active);
+    } else if (event.key === 'Escape' || event.key === 'Tab') {
+      close();
+      status.textContent = '';
+    }
+  });
+  type.addEventListener('change', () => {
+    close();
+    status.textContent = '';
+    if (!input.disabled) input.placeholder = copy.placeholder;
+  });
+  if (!input.disabled) input.placeholder = copy.placeholder;
+  document.addEventListener('click', event => {
+    if (!container.contains(event.target)) close();
+  });
+  container.addEventListener('focusout', () => {
+    setTimeout(() => { if (!container.contains(document.activeElement)) close(); }, 0);
+  });
+  const style = document.createElement('style');
+  style.textContent = `
+    #pickup-details .pickup-suggestions {list-style:none;margin:6px 0 12px;padding:4px;border:1px solid #b4d5e3;border-radius:12px;background:#fff;max-height:280px;overflow-y:auto;box-shadow:0 8px 24px #173f5610;}
+    #pickup-details .pickup-suggestions[hidden] {display:none;}
+    #pickup-details .pickup-suggestions li {display:flex;flex-direction:column;gap:3px;padding:12px;border-radius:8px;cursor:pointer;min-height:48px;color:#163747;overflow-wrap:anywhere;}
+    #pickup-details .pickup-suggestions li:hover,#pickup-details .pickup-suggestions li[aria-selected="true"] {background:#eaf6fc;outline:2px solid #197795;outline-offset:-2px;}
+    #pickup-details .pickup-suggestions strong {font-size:15px;font-weight:600;}
+    #pickup-details .pickup-suggestions span {font-size:12px;color:#45606d;}
+    #pickup-details .pickup-suggestion-help {margin:8px 0 0;font-size:13px;line-height:1.6;}
+    #pickup-details .pickup-suggestion-status {margin:5px 0 0;font-size:13px;}
+    #pickup-details .pickup-suggestion-status:empty {display:none;}
+  `;
+  document.head.append(style);
+})();
+
+</script>
+</body>
 </html>
