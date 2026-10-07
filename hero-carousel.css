@@ -1,0 +1,19 @@
+.hero.has-carousel{height:auto;min-height:760px;max-height:none;padding-top:70px;padding-bottom:235px;overflow:hidden}
+.hero .carousel-photo{opacity:0;transition:opacity 1.1s ease;object-fit:cover;pointer-events:none}
+.hero .carousel-photo.is-current{opacity:1}
+.hero.has-carousel .hero-shade{background:linear-gradient(90deg,rgba(8,30,39,.74),rgba(8,30,39,.12) 85%),linear-gradient(0deg,rgba(8,30,39,.88),transparent 65%);pointer-events:none}
+.hero .carousel-panel{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px 28px;align-items:center;bottom:28px;font-size:14px;letter-spacing:0}
+.carousel-info{display:flex;flex-direction:column;gap:5px;min-width:0}
+.carousel-info strong{font-size:clamp(18px,2vw,27px);line-height:1.2;font-weight:500}
+.carousel-info>span{font-size:11px;letter-spacing:.08em;color:#cbe6ec}
+.carousel-actions{display:flex;align-items:center;gap:18px;grid-column:1;flex-wrap:wrap}
+.hero .carousel-add{border:1px solid #c8edf6;border-radius:6px;background:#c0eaf4;color:#103c4d;padding:12px 18px;font-size:14px;font-weight:600;min-height:46px;cursor:pointer}
+.hero .carousel-add[aria-pressed=true]{background:#fff;color:#12556a;border-color:white}
+.carousel-actions a{font-size:13px;color:#fff;text-decoration:underline;text-underline-offset:4px;min-height:44px;display:flex;align-items:center}
+.carousel-nav{display:flex;align-items:center;gap:9px;grid-column:2;grid-row:1 / 3}
+.carousel-nav button{width:44px;height:44px;border:1px solid #ffffff70;border-radius:50%;background:#12343d55;color:#fff;cursor:pointer;font-size:20px}
+.carousel-nav button:hover{background:#ffffff25}
+.carousel-count{font-size:12px;font-variant-numeric:tabular-nums;white-space:nowrap;color:#fff}
+@media(min-width:1100px){.hero.has-carousel{min-height:820px}.hero.has-carousel .hero-content{padding-top:0}}
+@media(max-width:600px){.hero.has-carousel{min-height:780px;padding-top:45px;padding-bottom:295px}.hero .carousel-panel{grid-template-columns:1fr;gap:13px;bottom:23px}.carousel-nav{grid-column:1;grid-row:3;justify-content:flex-start}.carousel-info strong{font-size:21px}.carousel-actions{gap:12px}.hero.has-carousel .hero-copy{margin-bottom:22px}.hero.has-carousel .hero-content{padding-top:0}}
+@media(prefers-reduced-motion:reduce){.hero .carousel-photo{transition:none}}
